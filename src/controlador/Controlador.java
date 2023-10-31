@@ -34,7 +34,6 @@ public class Controlador {
     public ArrayList<Articulo> obtenerListaArticulos() {
         return datos.obtenerArticulos();
     }
-
     public ArrayList<Pedido> obtenerListaPedidos() {
         return datos.obtenerPedidos();
    }

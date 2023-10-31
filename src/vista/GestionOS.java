@@ -14,6 +14,8 @@ import controlador.Controlador;
 import java.util.Scanner;
 import java.util.Scanner;
 import modelo.Datos;
+import modelo.ListaPedidos;
+import modelo.Pedido;
 
 public class GestionOS {
      
@@ -74,7 +76,7 @@ public class GestionOS {
                        // controlador.crearArticulo();
                         break;
                     case '2':
-                        controlador.obtenerListaArticulos();
+                        System.out.println(controlador.obtenerListaArticulos());
                         break;
                     case '0':
                         salir = true;
@@ -99,14 +101,14 @@ public class GestionOS {
                         //controlador.agregarCliente();
                         break;
                     case '2':
-                        controlador.obtenerListaClientes();
+                        System.out.println(controlador.obtenerListaClientes());
                       
                         break;
                     case '3':
-                        controlador.obtenerListaClientesEstandar();
+                        System.out.println(controlador.obtenerListaClientesEstandar());
                         break;
                     case '4':
-                        controlador.obtenerListaClientesPremium();
+                        System.out.println(controlador.obtenerListaClientesPremium());
                         break;
                     case '0':
                         salir = true;
@@ -130,6 +132,7 @@ public class GestionOS {
                         break;
                     case '2':
                         // TO-BE-DONE: Mostrar Pedidos
+                         System.out.println(controlador.obtenerListaPedidos());
                         break;
                     case '0':
                         salir = true;
@@ -151,7 +154,7 @@ public class GestionOS {
                         //crearPedido(teclado);
                         break;
                     case '2':
-                        controlador.obtenerListaPedidos();
+                        System.out.println(controlador.obtenerListaPedidos());
                         break;
                     case '0':
                         salir = true;

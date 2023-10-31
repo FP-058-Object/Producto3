@@ -67,7 +67,7 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente [Email: " + email + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", NIF: " + nif + "]";
+        return "Cliente [Email: " + email + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", NIF: " + nif + "]\n";
     }
 }
 

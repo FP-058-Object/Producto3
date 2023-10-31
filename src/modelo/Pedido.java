@@ -36,6 +36,10 @@ public class Pedido {
         this.numeroPedido = numeroPedido;
     }
 
+    /*número total de pedidos*/
+    
+   
+    
     public Cliente getCliente() {
         return cliente;
     }

@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import ObjectFp_Otros.Fecha;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -78,7 +79,8 @@ public class Datos {
 
     // Obtener una lista de todos los pedidos
     public ArrayList<Pedido> obtenerPedidos() {
-        return listaPedidos.obtenerLista();
+       return listaPedidos.obtenerLista();
+        
     }
 
     // Implementa otros métodos para gestionar datos, como eliminar, buscar, etc.
@@ -102,21 +104,26 @@ public class Datos {
      * 
      */
     public void crearPedidoMenu(){
+        
         Scanner sc =new Scanner(System.in);
+        
         System.out.println("selecciona un articulo:");
         this.listaArticulos.mostrarArticulo();
         String codigo=sc.nextLine();
-        sc.next();
         /*CLIENTE*/
         System.out.println("selecciona un Cliente:");
         this.listaClientes.mostrarClientes();
         String clientes=sc.nextLine();
-        sc.next();
-        
-       /*CANTIDAD*/
+        /*CANTIDAD*/
         System.out.println("Selecciona una cantidad");
         int cantidad=sc.nextInt();
         /*FECHA*/
+        Date fecha=new Date();
+        
+        boolean enviado=true;
+        
+        Pedido ped=new Pedido(this.listaPedidos.contadorDePedidos(), this.listaClientes.buscarPorEmail(codigo), this.listaArticulos.buscarPorCodigo(codigo),cantidad, fecha, enviado);
+       
         
     }
     
