@@ -99,8 +99,9 @@ public class Datos {
     public Pedido buscarPedidoPorNumero(int numeroPedido) {
         return listaPedidos.buscarPorNumero(numeroPedido);
     }
+    /*__________________________CREAR___________________________________*/
     /**
-     *  entorno del usuario
+     *  Funcion para crear Pedidos, solicittud de datos
      * 
      */
     public void crearPedidoMenu(){
@@ -108,6 +109,7 @@ public class Datos {
         Scanner sc =new Scanner(System.in);
         
         System.out.println("selecciona un articulo:");
+        /*ARTICULO*/
         this.listaArticulos.mostrarArticulo();
         String codigo=sc.nextLine();
         /*CLIENTE*/
@@ -123,16 +125,65 @@ public class Datos {
         boolean enviado=true;
         
         Pedido ped=new Pedido(this.listaPedidos.contadorDePedidos(), this.listaClientes.buscarPorEmail(codigo), this.listaArticulos.buscarPorCodigo(codigo),cantidad, fecha, enviado);
-       
-        
     }
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * Funcion para crear Clientes, solicittud de datos
+     * 
+     */
+    public void crearCliente(){
+        Scanner sc =new Scanner(System.in);
+        System.out.println("Crear datos nuevo Cliente........\n");
+        /*CLIENTE*/
+        /*CORREO*/
+        System.out.println("Inserta el correo: \n");
+        String correo=sc.nextLine();
+        /*NOMBRE*/
+        System.out.println("Nombre: \n");
+        String nom =sc.nextLine();
+        /*DIRECCION*/
+        System.out.println("Dirección: \n");
+        String direccion=sc.nextLine();
+        
+        System.out.println("Selecciona y para tipo vip n para estandar:  Selecciona (y/n)   \n");
+        String tipo=sc.next();
+          
+          if (tipo.equals("y")) {
+                tipo=correo;
+            }else {
+                tipo="";
+            }
+         ClienteEstandar cliente1 = new ClienteEstandar(correo, nom, direccion, tipo);
+         listaClientes.agregar(cliente1);
+    }
+     /**
+     * Funcion para crear Articulo, solicittud de datos
+     * 
+     */
+      public void crearArticulo(){
+       Scanner sc =new Scanner(System.in); 
+       System.out.println("Código:  \n");
+       String cod=sc.next();
+       sc.nextLine();
+       System.out.println("Descripción:   \n");
+       String des=sc.next();
+       sc.nextLine();
+       System.out.println("Precio venta: \n");
+       Double pre=sc.nextDouble();
+       
+       System.out.println("Gastos envío:   \n");
+       Double gas=sc.nextDouble();
+       
+       System.out.println("Cantidad:     \n");
+       int cant=sc.nextInt();
+       
+       Articulo articulo2 = new Articulo(cod, des, pre, gas, cant);
+       listaArticulos.agregar(articulo2);
+      }
+    /**
+     * 
+     * Funcion para crear datos iniciales, solicittud de datos.
+     * 
+     */
     private void cargarDatosEjemplo() {
         // Crear clientes de ejemplo
         ClienteEstandar cliente1 = new ClienteEstandar("Cliente1", "Dirección1", "NIF1", "cliente1@example.com");

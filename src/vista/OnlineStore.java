@@ -4,9 +4,12 @@
  */
 package vista;
 
+import java.awt.AWTException;
+import java.io.IOException;
+
 public class OnlineStore {
      
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException,InterruptedException {
     GestionOS gestion = new GestionOS();
     gestion.inicio();
     }

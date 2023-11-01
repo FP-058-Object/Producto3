@@ -37,4 +37,20 @@ public class Controlador {
     public ArrayList<Pedido> obtenerListaPedidos() {
         return datos.obtenerPedidos();
    }
+    /**
+     * Lllamada datos clientes
+     */
+    public void agregarCliente(){
+    
+    datos.crearCliente();
+    
+   }
+    /**
+     * Lllamada datos clientes
+     */
+    public void agregarArticuloNuevo(){
+    
+    datos.crearArticulo();
+    
+   }
 }
