@@ -27,9 +27,9 @@ public class GestionOS {
         boolean salir = false;
         char opcio;
         do {
-        System.out.println("1. Gestión Articulos");
-        System.out.println("2. Gestión Clientes");
-        System.out.println("3. Gestión Pedidos");
+        System.out.println("1. Gestion Articulos");
+        System.out.println("2. Gestion Clientes");
+        System.out.println("3. Gestion Pedidos");
         System.out.println("0. Salir");
         opcio = pedirOpcion();
         switch (opcio) {
@@ -49,7 +49,7 @@ public class GestionOS {
         }
         char pedirOpcion() {
             String resp;
-            System.out.println("Elige una opción (1,2,3 o 0):");
+            System.out.println("Elige una opcion (1,2,3 o 0):");
         
             resp = teclado.nextLine();
             if (resp.isEmpty()) {
@@ -62,14 +62,14 @@ public class GestionOS {
             boolean salir = false;
             char opcio;
             do {
-                System.out.println("Menú de Gestión de Artículos");
-                System.out.println("1. Agregar artículo al inventario");
-                System.out.println("2. Mostrar artículos");
-                System.out.println("0. Volver al Menú Principal");
+                System.out.println("Menu de Gestion de Articulos");
+                System.out.println("1. Agregar articulo al inventario");
+                System.out.println("2. Mostrar articulos");
+                System.out.println("0. Volver al Menu Principal");
                 opcio = pedirOpcion();
                 switch (opcio) {
                     case '1':
-                        añadirArticulo();
+                        anadirArticulo();
                         break;
                     case '2':
                         controlador.obtenerListaArticulos();
@@ -81,26 +81,26 @@ public class GestionOS {
             } while (!salir);
         }
         
-        public void añadirArticulo(){
+        public void anadirArticulo(){
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do {
-            System.out.println("1. Añadir articulo");
-            System.out.println("2. Atrás");
+            System.out.println("1. Anadir articulo");
+            System.out.println("2. Atras");
             opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:
-                    System.out.print("Indica el codigo del artículo: ");
-                    scanner.nextLine(); // Consumir la nueva línea restante
+                    System.out.print("Indica el codigo del articulo: ");
+                    scanner.nextLine(); // Consumir la nueva linea restante
                     String codigoArticuloNuevo = scanner.nextLine();
-                    System.out.print("Indica la descripción del artículo: ");
+                    System.out.print("Indica la descripcion del articulo: ");
                     String descripcionArticuloNuevo = scanner.nextLine();
-                    System.out.print("Indica el precio de venta del artículo: ");
+                    System.out.print("Indica el precio de venta del articulo: ");
                     double precioVentaArticuloNuevo = scanner.nextDouble();
-                    System.out.print("Indica los gastos de envío del artículo: ");
+                    System.out.print("Indica los gastos de envio del articulo: ");
                     double gastosEnvioArticuloNuevo = scanner.nextDouble();
-                    System.out.print("Indica el tiempo de preparación del artículo (min): ");
+                    System.out.print("Indica el tiempo de preparacion del articulo (min): ");
                     int tiempoPreparacionMinutosArticuloNuevo = scanner.nextInt();
 
                     controlador.anadirArticulo(codigoArticuloNuevo, descripcionArticuloNuevo, precioVentaArticuloNuevo, gastosEnvioArticuloNuevo, tiempoPreparacionMinutosArticuloNuevo);
@@ -118,16 +118,16 @@ public class GestionOS {
             boolean salir = false;
             char opcio;
             do {
-                System.out.println("Menú de Gestión de Clientes");
+                System.out.println("Menu de Gestion de Clientes");
                 System.out.println("1. Agregar cliente");
                 System.out.println("2. Mostrar clientes");
-                System.out.println("3. Mostrar clientes estándar");
+                System.out.println("3. Mostrar clientes estandar");
                 System.out.println("4. Mostrar clientes premium");
-                System.out.println("0. Volver al Menú Principal");
+                System.out.println("0. Volver al Menu Principal");
                 opcio = pedirOpcion();
                 switch (opcio) {
                     case '1':
-                        añadirCliente();
+                        anadirCliente();
                         break;
                     case '2':
                         controlador.obtenerListaClientes();
@@ -144,19 +144,19 @@ public class GestionOS {
                 }
             } while (!salir);
         }
-        public void añadirCliente(){
+        public void anadirCliente(){
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do {
-            System.out.println("1. Cliente Estándar");
+            System.out.println("1. Cliente Estandar");
             System.out.println("2. Cliente Premium");
-            System.out.println("3. Atrás");
+            System.out.println("3. Atras");
             opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:
                     System.out.print("Indica el nombre del cliente: ");
-                    scanner.nextLine(); // Consumir la nueva línea restante
+                    scanner.nextLine(); // Consumir la nueva linea restante
                     String nombreClienteNuevoEstandar = scanner.nextLine();
                     System.out.print("Indica el email del cliente: ");
                     String emailClienteNuevoEstandar = scanner.nextLine();
@@ -169,7 +169,7 @@ public class GestionOS {
                     break;
                 case 2:
                     System.out.print("Indica el nombre del cliente: ");
-                    scanner.nextLine(); // Consumir la nueva línea restante
+                    scanner.nextLine(); // Consumir la nueva linea restante
                     String nombreClienteNuevoPremium = scanner.nextLine();
                     System.out.print("Indica el email del cliente: ");
                     String emailClienteNuevoPremium = scanner.nextLine();
@@ -193,18 +193,18 @@ public class GestionOS {
             boolean salir = false;
             char opcio;
             do {
-                System.out.println("Menú de Gestión de Pedidos");                                                                   
+                System.out.println("Menu de Gestion de Pedidos");                                                                   
                 System.out.println("1. Agregar Pedido");
                 System.out.println("2. Eliminar Pedidos");
                 System.out.println("3. Mostrar Pedidos");
-                System.out.println("0. Volver al Menú Principal");
+                System.out.println("0. Volver al Menu Principal");
                 opcio = pedirOpcion();
                 switch (opcio) {
                     case '1':
-                        añadirPedido();
+                        anadirPedido();
                         break;
                     case '2':
-                        System.out.print("Indica el número del pedido: ");
+                        System.out.print("Indica el numero del pedido: ");
                         int numeroPedidoEliminar = scanner.nextInt ();
                         controlador.eliminarPedido(numeroPedidoEliminar);
                         gestionPedidosMenu();
@@ -219,26 +219,26 @@ public class GestionOS {
             } while (!salir);
         
         }
-        public void añadirPedido(){
+        public void anadirPedido(){
             Scanner scanner = new Scanner(System.in);
             int opcion;
             do {
-                System.out.println("1. Añadir pedido");
-                System.out.println("2. Atrás");
+                System.out.println("1. Anadir pedido");
+                System.out.println("2. Atras");
                 opcion = scanner.nextInt();
 
                 switch (opcion) {
                     case 1:
                         System.out.print("Indica el email del cliente: ");
-                        scanner.nextLine(); // Consumir la nueva línea restante
+                        scanner.nextLine(); // Consumir la nueva linea restante
                         String emailClientePedidoNuevo = scanner.nextLine();
                         boolean emailExiste = controlador.comprobarEmailPedidoNuevo(emailClientePedidoNuevo);
                         if ( emailExiste == true){
-                            añadirPedido2(emailClientePedidoNuevo);
+                            anadirPedido2(emailClientePedidoNuevo);
                         }
                         else{
-                            System.out.println("El cliente no existe, tienes que añadirlo ");
-                            añadirCliente();
+                            System.out.println("El cliente no existe, tienes que anadirlo ");
+                            anadirCliente();
                         }
                     case 2:
                         gestionClientesMenu();
@@ -247,30 +247,31 @@ public class GestionOS {
             while (opcion != 0);
         }
         
-        public void añadirPedido2(String emailClientePedidoNuevo){
+        public void anadirPedido2(String emailClientePedidoNuevo){
             Scanner scanner = new Scanner(System.in);
             int opcion;
             do {
-                System.out.println("1. Continuar añadiendo pedido");
-                System.out.println("2. Atrás");
+                System.out.println("1. Continuar anadiendo pedido");
+                System.out.println("2. Atras");
                 opcion = scanner.nextInt();
 
                 switch (opcion) {
                     case 1:
-                        System.out.print("Indica el número de pedido: ");
-                        scanner.nextLine(); // Consumir la nueva línea restante
+                        System.out.print("Indica el numero de pedido: ");
+                        scanner.nextLine(); // Consumir la nueva linea restante
                         int numeroPedidoNuevo = scanner.nextInt();
                         System.out.print("Indica la cantidad: ");
                         int cantidadPedidoNuevo = scanner.nextInt();
-                        System.out.print("Indica el código del artículo: ");
-                        int codigoPedidoNuevo = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Indica el codigo del articulo: ");
+                        String codigoArticuloPedidoNuevo = scanner.nextLine();
                         Date fechaPedidoNuevo = new Date();
-                        controlador.buscarArticuloPorCodigo(codigoPedidoNuevo);
-                        controlador.crearPedidoNuevo(numeroPedidoNuevo, cantidadPedidoNuevo, fechaPedidoNuevo, emailClientePedidoNuevo, codigoPedidoNuevo);
+                        controlador.buscarArticuloPorCodigo(codigoArticuloPedidoNuevo);
+                        controlador.crearPedidoNuevo(numeroPedidoNuevo, cantidadPedidoNuevo, fechaPedidoNuevo, emailClientePedidoNuevo, codigoArticuloPedidoNuevo);
 
            
                     case 2:
-                        gestionClientesMenu();
+                        gestionPedidosMenu();
                 }
             } 
             while (opcion != 0);
@@ -288,10 +289,10 @@ public class GestionOS {
             boolean salir = false;
             char opcio;
             do {
-                System.out.println("Menú de Gestión de Pedidos");
+                System.out.println("Menu de Gestion de Pedidos");
                 System.out.println("1. Pedidos pendientes");
                 System.out.println("2. Pedidos enviados");
-                System.out.println("3. Atrás");
+                System.out.println("3. Atras");
                 opcio = pedirOpcion();
                 switch (opcio) {
                     case '1':

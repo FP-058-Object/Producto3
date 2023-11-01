@@ -15,6 +15,6 @@ public class ListaPedidos extends Lista<Pedido>{
                 return pedido;
             }
         }
-        return null; // Retorna null si no se encuentra el pedido con el número dado
+        return null; // Retorna null si no se encuentra el pedido con el numero dado
     }
 }

@@ -17,7 +17,7 @@ public class ClienteEstandar extends Cliente {
 
     @Override
     public String tipoCliente() {
-        return "Estándar";
+        return "Estandar";
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ClienteEstandar extends Cliente {
 
     @Override
     public float descuentoEnv() {
-        return 0; // Sin descuento en gastos de envío
+        return 0; // Sin descuento en gastos de envio
     }
     @Override
     public String toString() {

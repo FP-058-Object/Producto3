@@ -26,7 +26,7 @@ public class ClientePremium extends Cliente {
 
     @Override
     public float descuentoEnv() {
-        return 0.20f; // 20% de descuento en gastos de envío
+        return 0.20f; // 20% de descuento en gastos de envio
     }
     @Override
     public String toString() {

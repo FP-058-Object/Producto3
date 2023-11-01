@@ -21,9 +21,9 @@ public class Controlador {
         datos = new Datos();
     }
     // Gestion Articulos
-        //Añadir Articulo
+        //Anadir Articulo
     public Articulo anadirArticulo(String codigo, String descripcion,  double precioVenta, double gastosEnvio, int tiempoPreparacionMinutos){
-        return datos.añadirArticulo(codigo, descripcion,  precioVenta, gastosEnvio, tiempoPreparacionMinutos);
+        return datos.anadirArticulo(codigo, descripcion,  precioVenta, gastosEnvio, tiempoPreparacionMinutos);
     }
         //Mostrar Articuos
     public ArrayList<Articulo> obtenerListaArticulos() {
@@ -32,7 +32,7 @@ public class Controlador {
     
     
     //Gestion Clientes
-        //Añadir Clientes
+        //Anadir Clientes
     public Cliente agregarClienteEstandar(String email, String nombre, String domicilio, String nif){
         return datos.agregarClienteEstandar(email, nombre, domicilio, nif);
     }
@@ -68,13 +68,13 @@ public class Controlador {
     public boolean eliminarPedido (int numeroPedido){
         return datos.eliminarPedido(numeroPedido);
     }
-    public Articulo buscarArticuloPorCodigo(int codigo){
+    public Articulo buscarArticuloPorCodigo(String codigo){
         return datos.buscarArticuloPorCodigo(codigo);
     }
     public Cliente obtenerClientePedidoNuevo(String email){
         return datos.obtenerClientePedidoNuevo(email);
     }
-    public Pedido crearPedidoNuevo(int numero, int cantidad, Date fecha, String email,int codigo){
+    public Pedido crearPedidoNuevo(int numero, int cantidad, Date fecha, String email,String codigo){
         Cliente clientePedido = datos.obtenerClientePedidoNuevo(email);
         Articulo articuloPedido = datos.buscarArticuloPorCodigo(codigo);
         

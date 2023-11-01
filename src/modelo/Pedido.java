@@ -69,17 +69,21 @@ public class Pedido {
         this.fechaHoraPedido = fechaHoraPedido;
     }
 
-    public boolean isEnviado() {
+public boolean isEnviado() {
+    if (!enviado) {
         long tiempoTranscurrido = calcularTiempoTranscurrido(getFechaHoraPedido());
-        return tiempoTranscurrido > articulo.getTiempoPreparacionMinutos();
+        enviado = tiempoTranscurrido > articulo.getTiempoPreparacionMinutos();
     }
+    return enviado;
+}
 
     public void setEnviado(boolean enviado) {
         this.enviado = enviado;
     }
 
     public boolean pedidoEnviado() {
-        return enviado;
+        long tiempoTranscurrido = calcularTiempoTranscurrido(getFechaHoraPedido());
+        return tiempoTranscurrido > articulo.getTiempoPreparacionMinutos();
     }
 
 
@@ -89,8 +93,17 @@ public class Pedido {
 
     @Override
     public String toString() {
-        String estadoEnvio = enviado ? "Enviado" : "Pendiente de Envío";
-        return "Pedido #" + numeroPedido + "\nCliente: " + cliente.toString() + "\nArtículo: " + articulo.toString()
+        String estadoEnvio;
+        long tiempoTranscurrido = calcularTiempoTranscurrido(getFechaHoraPedido());
+        if (tiempoTranscurrido > articulo.getTiempoPreparacionMinutos()){
+        estadoEnvio = "Enviado";
+        }
+        else{
+                estadoEnvio = "Pendiente de envio";
+                }
+    
+
+        return "Pedido #" + numeroPedido + "\nCliente: " + cliente.toString() + "\nArticulo: " + articulo.toString()
                 + "\nCantidad: " + cantidad + "\nFecha y Hora del Pedido: " + fechaHoraPedido + "\nEstado: " + estadoEnvio;
     }
     

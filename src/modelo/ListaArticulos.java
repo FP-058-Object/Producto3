@@ -17,7 +17,7 @@ public class ListaArticulos extends Lista<Articulo>{
                 return articulo;
             }
         }
-        return null; // Retorna null si no se encuentra el artículo con el código dado
+        return null; // Retorna null si no se encuentra el articulo con el codigo dado
 
     }
     

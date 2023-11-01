@@ -15,6 +15,6 @@ public class ListaClientes extends Lista<Cliente>{
                 return cliente;
             }
         }
-        return null; // Retorna null si no se encuentra el cliente con el correo electrónico dado
+        return null; // Retorna null si no se encuentra el cliente con el correo electronico dado
     }
 }
