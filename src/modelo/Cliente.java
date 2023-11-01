@@ -22,9 +22,6 @@ public abstract class Cliente {
         this.nif = nif;
     }
 
-    public Cliente() {
-    }
-
     public abstract String tipoCliente();
 
     public abstract float calcAnual();
@@ -67,7 +64,7 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente [Email: " + email + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", NIF: " + nif + "]\n";
+        return "Cliente [Email: " + email + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", NIF: " + nif + "]";
     }
 }
 

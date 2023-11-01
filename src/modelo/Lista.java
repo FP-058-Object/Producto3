@@ -30,17 +30,22 @@ public class Lista<T> {
         return null;
         
     }
-    public void clear(){
-        
+    public void eliminar(T elemento) {
+        lista.remove(elemento);
     }
     public boolean isEmpty(){
         
         return false;
         
     }
-    public ArrayList<T> obtenerLista(){
-       ArrayList<T> arrlist = new ArrayList<>(lista);
-       
-       return arrlist;
+    public ArrayList<T> obtenerLista() {
+    for (T elemento : lista) {
+            System.out.println(elemento.toString());
+        }
+    return lista;
+    }
+    
+    public ArrayList<T> obtenerDatosLista() {
+    return lista;
     }
 }

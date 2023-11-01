@@ -10,13 +10,6 @@
 <project name="Object" default="default" basedir=".">
     <description>Builds, tests, and runs the project Object.</description>
     <import file="nbproject/build-impl.xml"/>
-    <dependencies>
-        <dependency>
-            <groupID>org.junit.juniper</groupID>
-            <artifactId>junit-juniper</artifactId>
-            <version>5.10.0</version>
-        </dependency>
-    </dependencies>
     <!--
 
     There exist several targets which are by default empty and which can be 

@@ -8,23 +8,24 @@ package modelo;
  *
  * @author elbob
  */
+import java.util.Calendar;
 import java.util.Date;
 
 public class Pedido {
     private int numeroPedido;
     private Cliente cliente;
-    private Articulo articulo;
+    Articulo articulo;
     private int cantidad;
     private Date fechaHoraPedido;
     private boolean enviado;
+    
 
-    public Pedido(int numeroPedido, Cliente cliente, Articulo articulo, int cantidad, Date fechaHoraPedido, boolean enviado) {
+    public Pedido(int numeroPedido, Cliente cliente, Articulo articulo, int cantidad, Date fechaHoraPedido) {
         this.numeroPedido = numeroPedido;
         this.cliente = cliente;
         this.articulo = articulo;
         this.cantidad = cantidad;
         this.fechaHoraPedido = fechaHoraPedido;
-        this.enviado = enviado;
     }
 
     // Otros atributos y constructor
@@ -36,10 +37,6 @@ public class Pedido {
         this.numeroPedido = numeroPedido;
     }
 
-    /*número total de pedidos*/
-    
-   
-    
     public Cliente getCliente() {
         return cliente;
     }
@@ -73,7 +70,8 @@ public class Pedido {
     }
 
     public boolean isEnviado() {
-        return enviado;
+        long tiempoTranscurrido = calcularTiempoTranscurrido(getFechaHoraPedido());
+        return tiempoTranscurrido > articulo.getTiempoPreparacionMinutos();
     }
 
     public void setEnviado(boolean enviado) {
@@ -84,6 +82,7 @@ public class Pedido {
         return enviado;
     }
 
+
     public float precioEnvio() {
         return enviado ? 0 : (float) (articulo.getGastosEnvio() * cantidad * (1 - cliente.descuentoEnv()));
     }
@@ -93,6 +92,27 @@ public class Pedido {
         String estadoEnvio = enviado ? "Enviado" : "Pendiente de Envío";
         return "Pedido #" + numeroPedido + "\nCliente: " + cliente.toString() + "\nArtículo: " + articulo.toString()
                 + "\nCantidad: " + cantidad + "\nFecha y Hora del Pedido: " + fechaHoraPedido + "\nEstado: " + estadoEnvio;
+    }
+    
+    
+    
+    private long calcularTiempoTranscurrido(Date fechaPedido) {
+        // Obtiene la fecha y hora actual
+        Date fechaActual = new Date();
+
+        // Convierte las fechas a objetos Calendar
+        Calendar calendarPedido = Calendar.getInstance();
+        calendarPedido.setTime(fechaPedido);
+        Calendar calendarActual = Calendar.getInstance();
+        calendarActual.setTime(fechaActual);
+
+        // Calcula la diferencia en milisegundos
+        long diferenciaEnMilisegundos = calendarActual.getTimeInMillis() - calendarPedido.getTimeInMillis();
+
+        // Convierte la diferencia a minutos
+        long minutosTranscurridos = diferenciaEnMilisegundos / (60 * 1000);
+        
+        return minutosTranscurridos;
     }
 
 }

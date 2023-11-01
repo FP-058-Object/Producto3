@@ -9,7 +9,6 @@ package modelo;
  * @author elbob
  */
 public class ListaPedidos extends Lista<Pedido>{
-   
     public Pedido buscarPorNumero(int numeroPedido) {
         for (Pedido pedido : obtenerLista()) {
             if (pedido.getNumeroPedido() == numeroPedido) {
@@ -18,29 +17,4 @@ public class ListaPedidos extends Lista<Pedido>{
         }
         return null; // Retorna null si no se encuentra el pedido con el número dado
     }
-    /**
-     * Para sumar numero nuevo
-     * @return 
-     */
-     public int contadorDePedidos(){
-          int num=0;
-          for (Pedido pedido : obtenerLista()) {
-                num += 1;
-          }
-         return num;
-    }
-     
-     /**
-      * Funcion para mostrar pedidos
-      */
-    public void mostrarPedidos(){
-     
-          for (Pedido pedidos : obtenerLista()) {
-               System.out.print(pedidos.toString());
-               System.out.print("\n");
-            }
-       
-   
-   
-   } 
 }

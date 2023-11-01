@@ -23,9 +23,6 @@ public class Articulo {
         this.tiempoPreparacionMinutos = tiempoPreparacionMinutos;
     }
 
-    public Articulo() {
-    }
-
     public String getCodigo() {
         return codigo;
     }
@@ -69,7 +66,7 @@ public class Articulo {
 
     @Override
     public String toString() {
-        return "Artículo [Código: " + codigo + ",\n Descripción: " + descripcion + ", Precio de Venta: " + precioVenta
-                + ",  Gastos de Envío: " + gastosEnvio + ",  Tiempo de Preparación: " + tiempoPreparacionMinutos + " minutos]\n";
+        return "Artículo [Código: " + codigo + ", Descripción: " + descripcion + ", Precio de Venta: " + precioVenta
+                + ", Gastos de Envío: " + gastosEnvio + ", Tiempo de Preparación: " + tiempoPreparacionMinutos + " minutos]";
     }
 }

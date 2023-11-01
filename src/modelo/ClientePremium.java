@@ -28,4 +28,8 @@ public class ClientePremium extends Cliente {
     public float descuentoEnv() {
         return 0.20f; // 20% de descuento en gastos de envío
     }
+    @Override
+    public String toString() {
+        return super.toString() + ", Cuota anual: " + calcAnual() + ", Descuento: " + descuentoEnv();
+    }
 }
