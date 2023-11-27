@@ -29,4 +29,8 @@ public class ClienteEstandar extends Cliente {
     public float descuentoEnv() {
         return 0; // Sin descuento en gastos de envío
     }
+    @Override
+    public String toString() {
+        return super.toString() + ", Cuota anual: " + calcAnual() + ", Descuento: " + descuentoEnv();
+    }
 }

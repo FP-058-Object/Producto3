@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author elbob
@@ -16,5 +18,13 @@ public class ListaArticulos extends Lista<Articulo>{
             }
         }
         return null; // Retorna null si no se encuentra el artículo con el código dado
+
     }
+    
+    public ListaArticulos(){
+        super();
+    }
+    
+    
+    
 }

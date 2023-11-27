@@ -8,23 +8,25 @@ package modelo;
  *
  * @author elbob
  */
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class Pedido {
     private int numeroPedido;
     private Cliente cliente;
-    private Articulo articulo;
+    Articulo articulo;
     private int cantidad;
     private Date fechaHoraPedido;
     private boolean enviado;
+    
 
-    public Pedido(int numeroPedido, Cliente cliente, Articulo articulo, int cantidad, Date fechaHoraPedido, boolean enviado) {
+    public Pedido(int numeroPedido, Cliente cliente, Articulo articulo, int cantidad, Date fechaHoraPedido) {
         this.numeroPedido = numeroPedido;
         this.cliente = cliente;
         this.articulo = articulo;
         this.cantidad = cantidad;
         this.fechaHoraPedido = fechaHoraPedido;
-        this.enviado = enviado;
     }
 
     // Otros atributos y constructor
@@ -69,7 +71,8 @@ public class Pedido {
     }
 
     public boolean isEnviado() {
-        return enviado;
+        long tiempoTranscurrido = calcularTiempoTranscurrido(getFechaHoraPedido());
+        return tiempoTranscurrido > articulo.getTiempoPreparacionMinutos();
     }
 
     public void setEnviado(boolean enviado) {
@@ -77,8 +80,10 @@ public class Pedido {
     }
 
     public boolean pedidoEnviado() {
-        return enviado;
+        long tiempoTranscurrido = calcularTiempoTranscurrido(getFechaHoraPedido());
+        return tiempoTranscurrido > articulo.getTiempoPreparacionMinutos();
     }
+
 
     public float precioEnvio() {
         return enviado ? 0 : (float) (articulo.getGastosEnvio() * cantidad * (1 - cliente.descuentoEnv()));
@@ -86,9 +91,81 @@ public class Pedido {
 
     @Override
     public String toString() {
-        String estadoEnvio = enviado ? "Enviado" : "Pendiente de Envío";
+        String estadoEnvio;
+        long tiempoTranscurrido = calcularTiempoTranscurrido(getFechaHoraPedido());
+        if (tiempoTranscurrido > articulo.getTiempoPreparacionMinutos()){
+        estadoEnvio = "Enviado";
+        }
+        else{
+                estadoEnvio = "Pendiente de envío";
+                }
+    
+
         return "Pedido #" + numeroPedido + "\nCliente: " + cliente.toString() + "\nArtículo: " + articulo.toString()
                 + "\nCantidad: " + cantidad + "\nFecha y Hora del Pedido: " + fechaHoraPedido + "\nEstado: " + estadoEnvio;
+    }
+    
+    
+    
+    private long calcularTiempoTranscurrido(Date fechaPedido) {
+        // Obtiene la fecha y hora actual
+        Date fechaActual = new Date();
+
+        // Convierte las fechas a objetos Calendar
+        Calendar calendarPedido = Calendar.getInstance();
+        calendarPedido.setTime(fechaPedido);
+        Calendar calendarActual = Calendar.getInstance();
+        calendarActual.setTime(fechaActual);
+
+        // Calcula la diferencia en milisegundos
+        long diferenciaEnMilisegundos = calendarActual.getTimeInMillis() - calendarPedido.getTimeInMillis();
+
+        // Convierte la diferencia a minutos
+        long minutosTranscurridos = diferenciaEnMilisegundos / (60 * 1000);
+        
+        return minutosTranscurridos;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 61 * hash + this.numeroPedido;
+        hash = 61 * hash + Objects.hashCode(this.cliente);
+        hash = 61 * hash + Objects.hashCode(this.articulo);
+        hash = 61 * hash + this.cantidad;
+        hash = 61 * hash + Objects.hashCode(this.fechaHoraPedido);
+        hash = 61 * hash + (this.enviado ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        if (this.numeroPedido != other.numeroPedido) {
+            return false;
+        }
+        if (this.cantidad != other.cantidad) {
+            return false;
+        }
+        if (this.enviado != other.enviado) {
+            return false;
+        }
+        if (!Objects.equals(this.cliente, other.cliente)) {
+            return false;
+        }
+        if (!Objects.equals(this.articulo, other.articulo)) {
+            return false;
+        }
+        return Objects.equals(this.fechaHoraPedido, other.fechaHoraPedido);
     }
 
 }
