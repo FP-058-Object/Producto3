@@ -12,9 +12,11 @@ package vista;
 
 import DAO.DAOException;
 import controlador.Controlador;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
+import modelo.Articulo;
 
 
 public class GestionOS {
@@ -67,6 +69,7 @@ public class GestionOS {
                 System.out.println("Menú de Gestión de Artículos");
                 System.out.println("1. Agregar artículo al inventario");
                 System.out.println("2. Mostrar artículos");
+                System.out.println("3. Eliminar artículo");
                 System.out.println("0. Volver al Menú Principal");
                 opcio = pedirOpcion();
                 switch (opcio) {
@@ -76,15 +79,17 @@ public class GestionOS {
                     case '2':
                         controlador.obtenerListaArticulos();
                         break;
+                    case '3':
+                        EliminarArticulo();
+                        break;
                     case '0':
                         inicio();
                         break;
                 }
             } while (!salir);
         }
-        
         public void añadirArticulo() throws DAOException, SQLException, ClassNotFoundException{
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());
         int opcion;
         do {
             System.out.println("1. Añadir articulo");
@@ -94,13 +99,13 @@ public class GestionOS {
             switch (opcion) {
                 case 1:
                    // Ingresar el código del artículo
-                    System.out.print("Indica el codigo del artículo: ");
+                    scanner.nextLine();
+                    System.out.print("Indica el codigo del artículo: "); 
                     String codigoArticuloNuevo = scanner.nextLine();
-
                     // Ingresar la descripción del artículo
                     System.out.print("Indica la descripción del artículo: ");
                     String descripcionArticuloNuevo = scanner.nextLine();
-
+                   
                     // Ingresar el precio de venta del artículo
                     double precioVentaArticuloNuevo = 0;
                     boolean precioValido = false;
@@ -155,8 +160,6 @@ public class GestionOS {
                         }
                     }
 
-                    
-
                     // Cerrar el scanner al finalizar
                     //scanner.close();
 
@@ -169,6 +172,22 @@ public class GestionOS {
         } 
         while (opcion != 0);
    
+        }
+        public void EliminarArticulo() throws SQLException, ClassNotFoundException, DAOException{
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());    
+         Articulo art=new Articulo();
+        // Ingresar el código del artículo
+            scanner.nextLine();
+            System.out.print("Indica el codigo del artículo: "); 
+            String codigoArticulo = scanner.nextLine();
+            art=controlador.buscarArticuloPorCodigo(codigoArticulo);
+           if (art != null) {
+                 controlador.eliminarArticulo(art); // Ajusta esto según tu lógica de eliminación
+                 System.out.println("Artículo eliminado exitosamente.");
+           } else {
+                 System.out.println("No se ha encontrado un artículo con ese código.");
+           }
+        
         }
         //GESTION CLIENTES
         void gestionClientesMenu() throws DAOException, SQLException, ClassNotFoundException {
@@ -188,6 +207,9 @@ public class GestionOS {
                         break;
                     case '2':
                         controlador.obtenerListaClientes();
+                        
+                        
+                        
                         break;
                     case '3':
                         controlador.obtenerListaClientesEstandar();
@@ -244,7 +266,7 @@ public class GestionOS {
         while (opcion != 0);
         // GESTION PEDIDOS
         }
-
+        // GESTION PEDIDOS
         void gestionPedidosMenu() throws DAOException, SQLException, ClassNotFoundException {
             Scanner scanner = new Scanner(System.in);
             boolean salir = false;
@@ -333,13 +355,6 @@ public class GestionOS {
             } 
             while (opcion != 0);
         }
-        
-        
-        
-        
-       
-        
-        // GESTION PEDIDOS
         
         void obtenerPedidosMenu() throws DAOException, SQLException, ClassNotFoundException {
             Scanner scanner = new Scanner(System.in);

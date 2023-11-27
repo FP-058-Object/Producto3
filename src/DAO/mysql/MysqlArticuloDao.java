@@ -24,6 +24,7 @@ public class MysqlArticuloDao implements ArticuloDao{
     final String DELETE = "DELETE FROM articulo WHERE idArticulo = ?";
     final String GETALL = "SELECT  idArticulo,codigo, descripcion, precioVenta,gastosEnvio, tiempoPreparacionMinutos FROM articulo";
     final String GETONE = "SELECT  idArticulo,codigo, descripcion, precioVenta,gastosEnvio, tiempoPreparacionMinutos FROM articulo WHERE idArticulo = ?";
+    
     private Connection conn;
 
     public MysqlArticuloDao(Connection conn) {

@@ -23,18 +23,20 @@ import modelo.Pedido;
 public class Controlador {
     private Datos datos;
     private Connection conn;
+    //private Conexion conectar= new  Conexion();
     public Controlador() {
         datos = new Datos();
-        
+      //  this.conn=conectar.getConnection();
     }
     private Connection ConectarDb() throws ClassNotFoundException, SQLException
     {
-        //Connection conn = null; 
+        Connection conn = null; 
         String direccion="jdbc:mysql://localhost:3306/onlinestore_01";
         String user="root";
         String password="12345678";
         Class.forName("com.mysql.cj.jdbc.Driver");
         return this.conn=DriverManager.getConnection(direccion,user,password);
+ 
     }
     
  
@@ -64,6 +66,9 @@ public class Controlador {
         Articulo articulos = new Articulo();
         try{
               ArticuloDao dao = new MysqlArticuloDao(ConectarDb()); 
+              
+              
+              
               long num = Long.parseLong(codigo);
               articulos = dao.obtenerId(num);
               System.out.println(articulos.toString());
@@ -106,6 +111,22 @@ public class Controlador {
          }
        }
         return nuevoArticulo;
+    }
+    public void eliminarArticulo(Articulo articulo) throws ClassNotFoundException, DAOException, SQLException{
+    
+                  try{
+                    ArticuloDao dao = new MysqlArticuloDao(ConectarDb()); 
+                    dao.eliminar(articulo);
+                   
+                    
+                    }catch(SQLException ex){
+                       throw  new DAOException("Error Sql", ex);
+                    }finally{
+                    if(this.conn !=null){
+                       this.conn.close();
+                    }
+                  }
+            
     }
     
 /*----------------------------------------------------------------------FIN ARTÍCULO----------------------------------------------------------*/

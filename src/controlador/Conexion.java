@@ -17,7 +17,7 @@ public class Conexion {
        String user="root";
        String password="12345678";
      try{
-       Class.forName("com.mysql.jdbc.Driver");
+       //Class.forName("com.mysql.jdbc.Driver");
        con=DriverManager.getConnection(direccion,user,password);
      }catch(Exception e){
         e.toString();
